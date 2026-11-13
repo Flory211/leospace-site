@@ -1,0 +1,42 @@
+name: Publish LeoSpace
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout approved release
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Verify approved archive
+        run: echo '59ba980a5672a539777699e1e284889e907a8b22790b94c9f260093cd749b15c  leospace-pages-site.zip' | sha256sum --check
+      - name: Extract static site
+        run: mkdir _site && unzip -q leospace-pages-site.zip -d _site
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload static pages
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+          retention-days: 1
+      - name: Publish Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
