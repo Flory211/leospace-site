@@ -30,6 +30,10 @@ jobs:
         run: echo '59ba980a5672a539777699e1e284889e907a8b22790b94c9f260093cd749b15c  leospace-pages-site.zip' | sha256sum --check
       - name: Extract static site
         run: mkdir _site && unzip -q leospace-pages-site.zip -d _site
+      - name: Verify approved update
+        run: echo '72c8dcc067b92f76c1d7d35ddee8fe45bbc2c8268a85f7d4fe15090eb0e298e8  leospace-pages-update-20261114.zip' | sha256sum --check
+      - name: Apply static update
+        run: unzip -oq leospace-pages-update-20261114.zip -d _site
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload static pages
