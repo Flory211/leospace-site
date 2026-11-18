@@ -26,14 +26,12 @@ jobs:
         uses: actions/checkout@v6
         with:
           persist-credentials: false
+      - name: Reassemble approved archive
+        run: cat leospace-pages-corraxium-20261117.zip.part01 leospace-pages-corraxium-20261117.zip.part02 leospace-pages-corraxium-20261117.zip.part03 leospace-pages-corraxium-20261117.zip.part04 > leospace-pages-corraxium-20261117.zip
       - name: Verify approved archive
-        run: echo '59ba980a5672a539777699e1e284889e907a8b22790b94c9f260093cd749b15c  leospace-pages-site.zip' | sha256sum --check
+        run: echo '3185bf5f8de3b84de5018235969d639caad08210965c430da40c01eabe67f1c4  leospace-pages-corraxium-20261117.zip' | sha256sum --check
       - name: Extract static site
-        run: mkdir _site && unzip -q leospace-pages-site.zip -d _site
-      - name: Verify approved update
-        run: echo '72c8dcc067b92f76c1d7d35ddee8fe45bbc2c8268a85f7d4fe15090eb0e298e8  leospace-pages-update-20261114.zip' | sha256sum --check
-      - name: Apply static update
-        run: unzip -oq leospace-pages-update-20261114.zip -d _site
+        run: mkdir _site && unzip -q leospace-pages-corraxium-20261117.zip -d _site
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload static pages
