@@ -28,10 +28,15 @@ jobs:
           persist-credentials: false
       - name: Reassemble approved archive
         run: cat leospace-pages-corraxium-20261117.zip.part01 leospace-pages-corraxium-20261117.zip.part02 leospace-pages-corraxium-20261117.zip.part03 leospace-pages-corraxium-20261117.zip.part04 > leospace-pages-corraxium-20261117.zip
-      - name: Verify approved archive
-        run: echo '3185bf5f8de3b84de5018235969d639caad08210965c430da40c01eabe67f1c4  leospace-pages-corraxium-20261117.zip' | sha256sum --check
+      - name: Verify approved archives
+        run: |
+          echo '3185bf5f8de3b84de5018235969d639caad08210965c430da40c01eabe67f1c4  leospace-pages-corraxium-20261117.zip' | sha256sum --check
+          echo 'cfae0beb3dee9bbdd1d234b052237c59eee90af1d03548f84e6437380ecdda9f  leospace-pages-camer-audio-studio-20261119.zip' | sha256sum --check
       - name: Extract static site
-        run: mkdir _site && unzip -q leospace-pages-corraxium-20261117.zip -d _site
+        run: |
+          mkdir _site
+          unzip -q leospace-pages-corraxium-20261117.zip -d _site
+          unzip -oq leospace-pages-camer-audio-studio-20261119.zip -d _site
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload static pages
