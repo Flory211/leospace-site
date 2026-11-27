@@ -30,6 +30,14 @@ jobs:
         run: echo 'dd3d31a8a32254b9ff7ebbee58650d11d53710bb1bdc0e88f8106a4405a7429b  leospace-pages-wallpapermaster-20261127.zip' | sha256sum --check
       - name: Extract static site
         run: unzip -q leospace-pages-wallpapermaster-20261127.zip -d _site
+      - name: Verify recipe update archives
+        run: |
+          echo '8dcc83f460dcdf61df1c79c6f828b8ea41e81d86c48fbd4a74a8133518624dea  vkusnye-kartochki-20261127-part1.zip' | sha256sum --check
+          echo '1d6f5f07f214ee140f33719569be9969df9735195b64400b2fe813961de8b347  vkusnye-kartochki-20261127-part2.zip' | sha256sum --check
+      - name: Apply recipe update
+        run: |
+          unzip -oq vkusnye-kartochki-20261127-part1.zip -d _site
+          unzip -oq vkusnye-kartochki-20261127-part2.zip -d _site
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload static pages
