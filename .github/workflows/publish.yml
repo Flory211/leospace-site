@@ -38,6 +38,10 @@ jobs:
         run: |
           unzip -oq vkusnye-kartochki-20261127-part1.zip -d _site
           unzip -oq vkusnye-kartochki-20261127-part2.zip -d _site
+      - name: Apply illustrated recipe view
+        run: |
+          echo 'c96cecde2b1c2632062d03038bb58cfd94c494b24a5faafeccaf94284a9b6f86  vkusnye-kartochki-poster-view-20261127.zip' | sha256sum --check
+          unzip -oq vkusnye-kartochki-poster-view-20261127.zip -d _site
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload static pages
