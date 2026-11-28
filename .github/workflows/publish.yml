@@ -42,6 +42,10 @@ jobs:
         run: |
           echo 'e0e25a7797e01426905f7112e8c05d3874b8cddbc083c769e10cecdbdfbdbf14  vkusnye-kartochki-poster-view-20261127.zip' | sha256sum --check
           unzip -oq vkusnye-kartochki-poster-view-20261127.zip -d _site
+      - name: Apply program downloads and launch update
+        run: |
+          echo '246557b7ca7693a6a32d77cfcac0327dad2b1a8b77addb09828b6b83c4a7a804  leospace-pages-downloads-launch-20261128.zip' | sha256sum --check
+          unzip -oq leospace-pages-downloads-launch-20261128.zip -d _site
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload static pages
