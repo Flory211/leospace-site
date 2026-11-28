@@ -40,7 +40,7 @@ jobs:
           unzip -oq vkusnye-kartochki-20261127-part2.zip -d _site
       - name: Apply illustrated recipe view
         run: |
-          echo 'e0e25a7797e01426905f7112e8c05d3874b8cddbc083c769e10cecdbdfbdbf14  vkusnye-kartochki-poster-view-20261127.zip' | sha256sum --check
+          echo 'f144ff2802d2c278241d60007b050193d62caa71794d7cb5f58d7c7eb81e0e76  vkusnye-kartochki-poster-view-20261127.zip' | sha256sum --check
           unzip -oq vkusnye-kartochki-poster-view-20261127.zip -d _site
       - name: Apply program downloads and launch update
         run: |
